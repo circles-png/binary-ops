@@ -59,7 +59,7 @@ const App = () => {
                       </span>)
                     }
                   </div>
-                  <span className='text-gray-500 basis-24'>
+                  <span className='text-gray-500 whitespace-nowrap'>
                     [
                     {
                       Array.from(parseInt(number.join(''), 2).toString()
@@ -78,6 +78,23 @@ const App = () => {
                         )
                     }
                     <span className='align-sub text-xs'>10</span>
+                    , {
+                      Array.from(parseInt(number.join(''), 2).toString(16)
+                        .padStart(2, 'l'))
+                        .map(
+                          (digit, digitIndex) => <span
+                            className={digit === 'l'
+                              ? ''
+                              : 'text-white'}
+                            key={digitIndex}
+                          >
+                            {digit === 'l'
+                              ? '0'
+                              : digit}
+                          </span>
+                        )
+                    }
+                    <span className='align-sub text-xs'>16</span>
                     ]
                   </span>
                 </div>
@@ -112,7 +129,7 @@ const App = () => {
                     </span>)
                 }
               </div>
-              <span className='text-gray-500 basis-24'>
+              <span className='text-gray-500 whitespace-nowrap'>
                 [
                 {
                   Array.from(binary
@@ -140,6 +157,32 @@ const App = () => {
                     )
                 }
                 <span className='align-sub text-xs'>10</span>
+                , {
+                  Array.from(binary
+                    .map(number => parseInt(number.join(''), 2))
+                    .reduce(
+                      (previous, current) => operation === 'AND'
+                        ? previous & current
+                        : operation === 'OR'
+                          ? previous | current
+                          : previous ^ current
+                    )
+                    .toString(16)
+                    .padStart(2, 'l'))
+                    .map(
+                      (digit, digitIndex) => <span
+                        className={digit === 'l'
+                          ? ''
+                          : 'text-white'}
+                        key={digitIndex}
+                      >
+                        {digit === 'l'
+                          ? '0'
+                          : digit}
+                      </span>
+                    )
+                }
+                <span className='align-sub text-xs'>16</span>
                 ]
               </span>
             </div>
