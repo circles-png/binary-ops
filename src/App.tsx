@@ -1,35 +1,34 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+const App = () => {
+  const [binary] = useState<number[][]>([[ 0, 0, 0, 0, 0, 0, 0, 0 ]])
+  return <div className='h-full bg-black text-white'>
+    <div className='h-full grid place-content-center'>
+      <div className='flex flex-col gap-8'>
+        <div className='flex flex-col p-8 rounded-2xl shadow-lg shadow-gray-400/60 border-t border-t-gray-400'>
+          <h1>binary operations</h1>
+          <h1 className='ml-auto text-gray-400'>binary-ops</h1>
+        </div>
+        {
+          binary.map(
+            (number, numberIndex) => <span
+              key={numberIndex}
+              className='flex justify-evenly text-2xl'
+            >
+              {
+                number.map((digit, digitIndex) => <span
+                  key={digitIndex}
+                >
+                  {digit}
+                </span>)
+              }
+            </span>
+          )
+        }
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  </div>
 }
+
 
 export default App
